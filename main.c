@@ -2,7 +2,7 @@
 char r1[3]={' ',' ',' '};
 char r2[3]={' ',' ',' '};
 char r3[3]={' ',' ',' '};
-int a,g=1;
+int a,g=1,count,flag =0 ;
 char input ='X';
 
 void printInstructions(){
@@ -63,70 +63,77 @@ void switchPlayer() {
     }
 }
 
+int checkTie() {
+    if (count >= 9) {
+        printf("It's a tie!\n");
+        return 0; // Indicates a tie
+    }
+    return 1; // Not a tie yet
+}
 int checkwin(){
 if (r1[0]=='X' && r1[1]=='X' && r1[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;
+             printf("X won the game!!\n"); return 0;flag =1;
          }
          else if (r2[0]=='X' && r2[1]=='X' && r2[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;
+             printf("X won the game!!\n"); return 0;flag =1;
          }
          else if (r3[0]=='X' && r3[1]=='X' && r3[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;
+             printf("X won the game!!\n"); return 0;flag =1;
          }
          else if (r1[0]=='X' && r2[0]=='X' && r3[0]=='X')
          {
-             printf("X won the game!!\n"); return 0;
+             printf("X won the game!!\n"); return 0;flag =1;
          }
          else if (r1[1]=='X' && r2[1]=='X' && r3[1]=='X')
          {
-             printf("X won the game!!\n"); return 0;
+             printf("X won the game!!\n"); return 0;flag =1;
          }
          else if (r1[2]=='X' && r2[2]=='X' && r3[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;
+             printf("X won the game!!\n"); return 0;flag =1;
          }
          else if (r1[0]=='X' && r2[1]=='X' && r3[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;
+             printf("X won the game!!\n"); return 0;flag =1;
          }
          else if (r1[2]=='X' && r2[1]=='X' && r3[0]=='X')
          {
-             printf("X won the game!!\n"); return 0;
+             printf("X won the game!!\n"); return 0;flag =1;
          }
          else if (r1[0]=='O' && r1[1]=='O' && r1[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;
+             printf("O won the game!!\n"); return 0;flag =1;
          }
          else if (r2[0]=='O' && r2[1]=='O' && r2[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;
+             printf("O won the game!!\n"); return 0;flag =1;
          }
          else if (r3[0]=='O' && r3[1]=='O' && r3[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;
+             printf("O won the game!!\n"); return 0;flag =1;
          }
          else if (r1[0]=='O' && r2[0]=='O' && r3[0]=='O')
          {
-             printf("O won the game!!\n"); return 0;
+             printf("O won the game!!\n"); return 0;flag =1;
          }
          else if (r1[1]=='O' && r2[1]=='O' && r3[1]=='O')
          {
-             printf("O won the game!!\n"); return 0;
+             printf("O won the game!!\n"); return 0;flag =1;
          }
          else if (r1[2]=='O' && r2[2]=='O' && r3[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;
+             printf("O won the game!!\n"); return 0;flag =1;
          }
          else if (r1[0]=='O' && r2[1]=='O' && r3[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;
+             printf("O won the game!!\n"); return 0;flag =1;
          }
          else if (r1[2]=='O' && r2[1]=='O' && r3[0]=='O')
          {
-             printf("O won the game!!\n"); return 0;
+             printf("O won the game!!\n"); return 0;flag =1;
          }
          else 
          {
@@ -134,11 +141,13 @@ if (r1[0]=='X' && r1[1]=='X' && r1[2]=='X')
             return 1;
          }
     
+    
 }
 
 int makeMove(){
     printf("%c where do you want to place it? \n",input);
     scanf("%d",&a);
+    count++;
     if (a>0 && a<=9)
     {
         if (a==1 && r1[0]!=input && r1[0]!='O')
@@ -180,6 +189,7 @@ int makeMove(){
     }
     else printf("%c did not enter a valid value, GAME OVER...\n",input); 
     return 1;
+
 }
 
 int main(){
@@ -194,6 +204,7 @@ int main(){
         if (makeMove()==0);//input 
         else break;
         outputarray(); // print the array
+        if(checkTie()==0) break;
         if (checkwin() == 0) break;//evaluate if the person won the game
     
      }
