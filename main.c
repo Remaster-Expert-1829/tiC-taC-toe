@@ -3,9 +3,9 @@ char r1[3]={' ',' ',' '};
 char r2[3]={' ',' ',' '};
 char r3[3]={' ',' ',' '};
 int a,g=1;
-char input ='a';
+char input ='X';
 
-void basicoutput(){
+void printInstructions(){
     printf("\t1|2|3\n");
     printf("\t4|5|6\n");
     printf("\t7|8|9\n");
@@ -51,6 +51,16 @@ while (i<3)
     i+=1;
 }
 printf("\n");
+}
+
+void switchPlayer() {
+    if (input == 'X'){
+        input = 'O';
+    }
+    else
+    {
+        input = 'X';
+    }
 }
 
 int checkwin(){
@@ -118,10 +128,17 @@ if (r1[0]=='X' && r1[1]=='X' && r1[2]=='X')
          {
              printf("O won the game!!\n"); return 0;
          }
-         else return 1;
+         else 
+         {
+            switchPlayer();
+            return 1;
+         }
+    
 }
 
-int inputdata(){
+int makeMove(){
+    printf("%c where do you want to place it? \n",input);
+    scanf("%d",&a);
     if (a>0 && a<=9)
     {
         if (a==1 && r1[0]!=input && r1[0]!='O')
@@ -165,41 +182,20 @@ int inputdata(){
     return 1;
 }
 
-void inputo(){
-    input = 'O';
-    printf("%c where do you want to place it? \n",input);
-    scanf("%d",&a);
-}
-void inputx(){
-    input = 'X';
-    printf("%c where do you want to place it? \n",input);
-    scanf("%d",&a);  
-}
 int main(){
 
-     printf("TiC TaC Toe v0.5   ~ SonicX1829//-_-\n");
-     basicoutput();
+     printf("TiC TaC Toe v0.42   ~ SonicX1829//-_-\n");
+     printInstructions();
      printf("X starts first!\n");
     
      while (g==1)
      {
-        //input from x
-        inputx();
-         if (inputdata()==0);
-         else break;
-         //print the array
-         outputarray();
-         //evaluate if the person won the game
-        if (checkwin() == 0) break;
-        //input from o
-         inputo();
-        if (inputdata()==0);
+      
+        if (makeMove()==0);//input 
         else break;
-        
-         //print the array
-         outputarray();
-         //evaluate if the person won the game
-        if (checkwin() == 0) break;
+        outputarray(); // print the array
+        if (checkwin() == 0) break;//evaluate if the person won the game
+    
      }
      return 0;
 }
