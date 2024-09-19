@@ -70,6 +70,7 @@ int checkTie() {
     }
     return 1; // Not a tie yet
 }
+
 int checkwin(){
 if (r1[0]=='X' && r1[1]=='X' && r1[2]=='X')
          {
@@ -145,6 +146,7 @@ if (r1[0]=='X' && r1[1]=='X' && r1[2]=='X')
 }
 
 int makeMove(){
+    reenter:
     printf("%c where do you want to place it? \n",input);
     scanf("%d",&a);
     count++;
@@ -186,6 +188,7 @@ int makeMove(){
         {
             r3[2]=input;return 0;
         }
+        else{printf("\talready there, try again\n");goto reenter ;return 0;}
     }
     else printf("%c did not enter a valid value, GAME OVER...\n",input); 
     return 1;
@@ -204,7 +207,7 @@ int main(){
         if (makeMove()==0);//input 
         else break;
         outputarray(); // print the array
-        if(checkTie()==0) break;
+        if(checkTie()==0) break;//checks tie
         if (checkwin() == 0) break;//evaluate if the person won the game
     
      }
