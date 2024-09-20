@@ -3,7 +3,7 @@ char version[] ="v0.52";
 char r1[3]={' ',' ',' '}; //board
 char r2[3]={' ',' ',' '}; //board
 char r3[3]={' ',' ',' '}; //board
-int game_status = 1 ;//If match in progress value = 1
+int game_status = 1 ;//If match in progress value = 1 
 char current_player ='X'; //current player
 
 void printInstructions(){//outputs the numbers corresponding to the positions
