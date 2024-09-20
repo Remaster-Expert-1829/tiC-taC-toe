@@ -7,3 +7,6 @@ tic tac toe in vanilla C made as a small timepass project
 v0.5 will contain functions to ensure better flow of control throughout the program and fix the above two issues
 
 -SonicX1829 (Remaster Expert)
+
+Fixed all the issue with addition of functions in the program
+=-_-
