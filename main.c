@@ -1,8 +1,9 @@
 #include<stdio.h>
+#include<stdbool.h>
 char r1[3]={' ',' ',' '};
 char r2[3]={' ',' ',' '};
 char r3[3]={' ',' ',' '};
-int a,g=1,count,flag =0 ;
+int a,flag = 1 ;
 char input ='X';
 
 void printInstructions(){
@@ -64,77 +65,81 @@ void switchPlayer() {
 }
 
 int checkTie() {
-    if (count >= 9) {
-        printf("It's a tie!\n");
-        return 0; // Indicates a tie
+    int empty = 0;
+    for(int i=0;i<3;i++){
+        if(r1[i]== ' ') empty=1;
+        if(r2[i]== ' ') empty=1;
+        if(r3[i]== ' ') empty=1;
     }
-    return 1; // Not a tie yet
+    if (empty == 1) return 1;
+    else {printf("its a tie!");return 0;}
+
 }
 
 int checkwin(){
 if (r1[0]=='X' && r1[1]=='X' && r1[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;flag =1;
+             printf("X won the game!!\n"); return 0;flag =0;
          }
          else if (r2[0]=='X' && r2[1]=='X' && r2[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;flag =1;
+             printf("X won the game!!\n"); return 0;flag =0;
          }
          else if (r3[0]=='X' && r3[1]=='X' && r3[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;flag =1;
+             printf("X won the game!!\n"); return 0;flag =0;
          }
          else if (r1[0]=='X' && r2[0]=='X' && r3[0]=='X')
          {
-             printf("X won the game!!\n"); return 0;flag =1;
+             printf("X won the game!!\n"); return 0;flag =0;
          }
          else if (r1[1]=='X' && r2[1]=='X' && r3[1]=='X')
          {
-             printf("X won the game!!\n"); return 0;flag =1;
+             printf("X won the game!!\n"); return 0;flag =0;
          }
          else if (r1[2]=='X' && r2[2]=='X' && r3[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;flag =1;
+             printf("X won the game!!\n"); return 0;flag =0;
          }
          else if (r1[0]=='X' && r2[1]=='X' && r3[2]=='X')
          {
-             printf("X won the game!!\n"); return 0;flag =1;
+             printf("X won the game!!\n"); return 0;flag =0;
          }
          else if (r1[2]=='X' && r2[1]=='X' && r3[0]=='X')
          {
-             printf("X won the game!!\n"); return 0;flag =1;
+             printf("X won the game!!\n"); return 0;flag =0;
          }
          else if (r1[0]=='O' && r1[1]=='O' && r1[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;flag =1;
+             printf("O won the game!!\n"); return 0;flag =0;
          }
          else if (r2[0]=='O' && r2[1]=='O' && r2[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;flag =1;
+             printf("O won the game!!\n"); return 0;flag =0;
          }
          else if (r3[0]=='O' && r3[1]=='O' && r3[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;flag =1;
+             printf("O won the game!!\n"); return 0;flag =0;
          }
          else if (r1[0]=='O' && r2[0]=='O' && r3[0]=='O')
          {
-             printf("O won the game!!\n"); return 0;flag =1;
+             printf("O won the game!!\n"); return 0;flag =0;
          }
          else if (r1[1]=='O' && r2[1]=='O' && r3[1]=='O')
          {
-             printf("O won the game!!\n"); return 0;flag =1;
+             printf("O won the game!!\n"); return 0;flag =0;
          }
          else if (r1[2]=='O' && r2[2]=='O' && r3[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;flag =1;
+             printf("O won the game!!\n"); return 0;flag =0;
          }
          else if (r1[0]=='O' && r2[1]=='O' && r3[2]=='O')
          {
-             printf("O won the game!!\n"); return 0;flag =1;
+             printf("O won the game!!\n"); return 0;flag =0;
          }
          else if (r1[2]=='O' && r2[1]=='O' && r3[0]=='O')
          {
-             printf("O won the game!!\n"); return 0;flag =1;
+             printf("O won the game!!\n"); return 0;flag =0;
          }
          else 
          {
@@ -149,7 +154,6 @@ int makeMove(){
     reenter:
     printf("%c where do you want to place it? \n",input);
     scanf("%d",&a);
-    count++;
     if (a>0 && a<=9)
     {
         if (a==1 && r1[0]!=input && r1[0]!='O')
@@ -188,7 +192,7 @@ int makeMove(){
         {
             r3[2]=input;return 0;
         }
-        else{printf("\talready there, try again\n");goto reenter ;return 0;}
+        else{printf("\talready there, try again\n");goto reenter;return 0;}
     }
     else printf("%c did not enter a valid value, GAME OVER...\n",input); 
     return 1;
@@ -201,7 +205,7 @@ int main(){
      printInstructions();
      printf("X starts first!\n");
     
-     while (g==1)
+     while (flag)
      {
       
         if (makeMove()==0);//input 
